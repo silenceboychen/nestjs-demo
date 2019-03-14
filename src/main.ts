@@ -1,5 +1,4 @@
 import * as helmet from 'helmet';
-import * as csurf from 'csurf';
 import * as bodyParser from 'body-parser';
 import * as compression from 'compression';
 import * as rateLimit from 'express-rate-limit';
@@ -8,6 +7,7 @@ import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './filters/error.filter';
 import { ValidationPipe } from './pipes/validation.pipe';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
+import { ConfigService } from './config/config.service';
 
 // 替换 console 为更统一友好的
 const { log, warn, info } = console;
@@ -22,7 +22,6 @@ global.console = Object.assign(console, {
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
   app.use(helmet());
-  app.use(csurf());
   app.use(compression());
   app.use(rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
@@ -34,6 +33,7 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalInterceptors(new LoggingInterceptor());
-  await app.listen(3000);
+  const config = new ConfigService(`${process.env.NODE_ENV}.env`);
+  await app.listen(config.get('PORT'));
 }
 bootstrap();
