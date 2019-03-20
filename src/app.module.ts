@@ -1,10 +1,11 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Strategy } from './entities/strategy.entity';
 import { User } from './entities/user.entity';
 import { CryptoUtil } from 'util/crypto.util';
 import { AuthService } from './modules/auth/auth.service';
 import { AuthController } from './modules/auth/auth.controller';
+import { CorsMiddleware } from 'middlewares/cors.middlewares';
 
 @Module({
   imports: [
@@ -14,4 +15,8 @@ import { AuthController } from './modules/auth/auth.controller';
   controllers: [AuthController],
   providers: [CryptoUtil, AuthService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(CorsMiddleware).forRoutes('*');
+  }
+}

@@ -21,9 +21,9 @@ export class CorsMiddleware implements NestMiddleware {
       const allowedHeaders = ['Engaged-Auth-Token', 'Access-Control-Allow-Headers', 'Access-Control-Allow-Origin', 'Cache-Control', 'Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With', 'withCredentials'];
 
       // Allow Origin
-    //   if (!origin || allowedOrigins.includes(origin)) {
-    //     response.setHeader('Access-Control-Allow-Origin', origin || '*');
-    //   }
+      // if (!origin || allowedOrigins.includes(origin)) {
+      response.setHeader('Access-Control-Allow-Origin', origin || '*');
+      // }
 
       // Headers
       response.header('Access-Control-Allow-Headers', allowedHeaders.join(','));
