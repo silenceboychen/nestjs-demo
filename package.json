@@ -28,6 +28,7 @@
   "dependencies": {
     "@nestjs/common": "^5.4.0",
     "@nestjs/core": "^5.4.0",
+    "@nestjs/typeorm": "^6.0.0",
     "body-parser": "^1.18.3",
     "class-transformer": "^0.2.0",
     "class-validator": "^0.9.1",
@@ -36,9 +37,11 @@
     "express-rate-limit": "^3.4.0",
     "helmet": "^3.16.0",
     "joi": "^14.3.1",
+    "mysql": "^2.16.0",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "rxjs": "^6.2.2",
+    "typeorm": "^0.2.15",
     "typescript": "^3.0.1"
   },
   "devDependencies": {
