@@ -4,7 +4,7 @@ import * as compression from 'compression';
 import * as rateLimit from 'express-rate-limit';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { HttpExceptionFilter } from './filters/error.filter';
+import { AnyExceptionFilter } from './filters/error.filter';
 import { ValidationPipe } from './pipes/validation.pipe';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
 import { ConfigService } from './config/config.service';
@@ -30,7 +30,7 @@ async function bootstrap() {
   app.use(bodyParser.json({limit: '1mb'}));
   app.use(bodyParser.urlencoded({ extended: true }));
   // 全局异常拦截器
-  app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalFilters(new AnyExceptionFilter());
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalInterceptors(new LoggingInterceptor());
   const config = new ConfigService(`${process.env.NODE_ENV}.env`);
