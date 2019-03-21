@@ -1,19 +1,16 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Strategy } from './entities/strategy.entity';
-import { User } from './entities/user.entity';
-import { CryptoUtil } from 'util/crypto.util';
-import { AuthService } from './modules/auth/auth.service';
-import { AuthController } from './modules/auth/auth.controller';
 import { CorsMiddleware } from 'middlewares/cors.middlewares';
+import { AuthModule } from 'modules/auth/auth.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
-    TypeOrmModule.forFeature([User, Strategy]),
+    // TypeOrmModule.forFeature([User, Strategy]),
+    AuthModule,
   ],
-  controllers: [AuthController],
-  providers: [CryptoUtil, AuthService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
