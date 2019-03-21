@@ -18,7 +18,7 @@ export class AnyExceptionFilter implements ExceptionFilter<any> {
         statusCode: exception.getStatus(),
         timestamp: new Date().toISOString(),
         path: request.url,
-        msg: exception.message,
+        msg: exception.message.message || exception.message,
       });
   }
 }
