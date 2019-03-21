@@ -1,11 +1,11 @@
-import { CryptoUtil } from './../../util/crypto.util';
+import { CryptoUtil } from 'utils/crypto.util';
 import { Injectable, Inject, HttpException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from './../../entities/user.entity';
+import { User } from 'entities/user.entity';
 
 @Injectable()
-export class AuthService {
+export class UserService {
   constructor(
     @InjectRepository(User) private readonly userRepo: Repository<User>,
     @Inject(CryptoUtil) private readonly cryptoUtil: CryptoUtil,

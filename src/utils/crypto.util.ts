@@ -10,7 +10,7 @@ export class CryptoUtil {
      * @param password 登录密码
      */
     encryptPassword(password: string): string {
-        return createHash('sha256').update(password).digest('hex');
+        return createHash('md5').update(password).digest('hex');
     }
 
     /**

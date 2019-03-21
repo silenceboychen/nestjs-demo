@@ -1,13 +1,13 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CorsMiddleware } from 'middlewares/cors.middlewares';
-import { AuthModule } from 'modules/auth/auth.module';
+import { UserModule } from 'modules/user/user.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
     // TypeOrmModule.forFeature([User, Strategy]),
-    AuthModule,
+    UserModule,
   ],
   controllers: [],
   providers: [],

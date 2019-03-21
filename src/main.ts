@@ -1,13 +1,14 @@
+import { ResultInterceptor } from './interceptors/result.interceptor';
 import * as helmet from 'helmet';
 import * as bodyParser from 'body-parser';
 import * as compression from 'compression';
 import * as rateLimit from 'express-rate-limit';
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { AnyExceptionFilter } from './filters/error.filter';
-import { ValidationPipe } from './pipes/validation.pipe';
-import { LoggingInterceptor } from './interceptors/logging.interceptor';
-import { ConfigService } from './config/config.service';
+import { AppModule } from 'app.module';
+import { AnyExceptionFilter } from 'filters/error.filter';
+import { ValidationPipe } from 'pipes/validation.pipe';
+import { LoggingInterceptor } from 'interceptors/logging.interceptor';
+import { ConfigService } from 'config/config.service';
 
 // 替换 console 为更统一友好的
 const { log, warn, info } = console;
@@ -32,7 +33,7 @@ async function bootstrap() {
   // 全局异常拦截器
   app.useGlobalFilters(new AnyExceptionFilter());
   app.useGlobalPipes(new ValidationPipe());
-  app.useGlobalInterceptors(new LoggingInterceptor());
+  app.useGlobalInterceptors(new LoggingInterceptor(), new ResultInterceptor());
   const config = new ConfigService(`${process.env.NODE_ENV}.env`);
   await app.listen(config.get('PORT'));
 }
