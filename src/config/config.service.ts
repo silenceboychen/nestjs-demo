@@ -21,6 +21,8 @@ export class ConfigService {
         .valid(['development', 'production'])
         .default('development'),
       PORT: Joi.number().default(3000),
+      SESSION_SECRET: Joi.string(),
+      SESSION_NAME: Joi.string(),
     });
 
     const { error, value: validatedEnvConfig } = Joi.validate(

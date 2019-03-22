@@ -11,12 +11,14 @@ export class User {
     @Column()
     password: string;
 
+    @Column()
+    email: string;
+
+    @Column()
+    role: string;
+
     @Column({
         default: 1,
     })
     status: number;
-
-    @Column()
-    // tslint:disable-next-line
-    login_time: number;
 }

@@ -11,7 +11,7 @@ export class UserController {
   @Post('login')
   async login(@Req() req, @Body() body: User): Promise<User> {
     const data = await this.authService.login(body.username, body.password);
-    req.user = data;
+    req.session.user = data;
     return data;
   }
 
@@ -25,8 +25,10 @@ export class UserController {
   }
 
   @Get(':id')
-  async getUserInfo(@Param() id: number): Promise<User> {
-      const data = await this.authService.findUserInfoWithId(id);
-      return data;
+  async getUserInfo(@Req() req, @Param() id: number): Promise<User> {
+      // const data = await this.authService.findUserInfoWithId(id);
+      // return data;
+      console.log(req.session);
+      return req.session.user;
   }
 }

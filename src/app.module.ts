@@ -1,3 +1,4 @@
+import { ConfigModule } from './config/config.module';
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CorsMiddleware } from 'middlewares/cors.middlewares';
@@ -7,6 +8,7 @@ import { UserModule } from 'modules/user/user.module';
   imports: [
     TypeOrmModule.forRoot(),
     // TypeOrmModule.forFeature([User, Strategy]),
+    ConfigModule,
     UserModule,
   ],
   controllers: [],
