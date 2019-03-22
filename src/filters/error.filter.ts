@@ -12,13 +12,14 @@ export class AnyExceptionFilter implements ExceptionFilter<any> {
     const response = ctx.getResponse();
     const request = ctx.getRequest();
 
+    console.log(exception);
     response
       .status(exception.getStatus())
       .json({
         statusCode: exception.getStatus(),
         timestamp: new Date().toISOString(),
         path: request.url,
-        msg: exception.message.message || exception.message,
+        msg: exception.message.message || exception.message.error || exception.message,
       });
   }
 }
