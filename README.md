@@ -1,75 +1,141 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# nest-demo
 
-[travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
-[travis-url]: https://travis-ci.org/nestjs/nest
-[linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
-[linux-url]: https://travis-ci.org/nestjs/nest
-  
-  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
-<a href="https://gitter.im/nestjs/nestjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/nestjs/nestjs.svg" alt="Gitter" /></a>
-<a href="https://opencollective.com/nest#backer"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
-  <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 项目结构
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ npm install
+```
+.
+├── commitlint.config.js
+├── config                          // 配置文件
+│   └── dev.json
+├── .gitignore
+├── LICENSE
+├── nest-cli.json
+├── nodemon-debug.json
+├── nodemon.json
+├── package.json
+├── .prettierrc
+├── README.md
+├── src
+│   ├── app.controller.spec.ts
+│   ├── app.controller.ts
+│   ├── app.module.ts               // 根模块
+│   ├── app.service.ts
+│   ├── filters                     // 过滤器
+│   │   └── error.filter.ts         // 全局异常过滤器
+│   ├── interceptors                // 拦截器
+│   │   ├── logging.interceptor.ts  // 日志拦截器
+│   │   └── result.interceptor.ts   // 响应结果拦截器
+│   ├── main.ts                     // 入口文件
+│   ├── middlewares                 // 中间件
+│   │   └── cors.middleware.ts      // 跨域处理中间件
+│   └── pipes                       // 管道
+│       └── validation.pipe.ts      // 数据验证管道
+├── test
+│   ├── app.e2e-spec.ts
+│   └── jest-e2e.json
+├── tsconfig.build.json
+├── tsconfig.json
+├── tslint.json
+└── yarn.lock
 ```
 
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```
+.
+├── commitlint.config.js
+├── config                          // 配置文件
+│   ├── development.env
+│   └── production.env
+├── .gitignore
+├── nest-cli.json
+├── nodemon-debug.json
+├── nodemon.json
+├── ormconfig.json
+├── package.json
+├── .prettierrc
+├── README.md
+├── src
+│   ├── app.module.ts               // 根模块
+│   ├── config
+│   │   ├── config.module.ts
+│   │   └── config.service.ts
+│   ├── decorators                  // 自定义装饰器
+│   │   └── roles.decorator.ts
+│   ├── entities                    // 数据库表结构实体
+│   │   ├── strategy.entity.ts
+│   │   └── user.entity.ts
+│   ├── filters                     // 过滤器
+│   │   └── error.filter.ts         // 全局异常过滤器
+│   ├── guards                      // 守卫
+│   │   └── roles.guard.ts          // 角色守卫
+│   ├── interceptors                // 拦截器
+│   │   ├── logging.interceptor.ts  // 日志拦截器
+│   │   └── result.interceptor.ts   // 响应结果拦截器
+│   ├── interfaces
+│   │   └── result.interface.ts
+│   ├── main.ts                     // 入口文件
+│   ├── middlewares                 // 中间件
+│   │   └── cors.middlewares.ts     // 跨域处理中间件
+│   ├── modules                     // 功能模块
+│   │   └── user                    // 用户模块
+│   │       ├── user.controller.ts
+│   │       ├── user.module.ts
+│   │       └── user.service.ts
+│   ├── pipes                       // 管道
+│   │   └── validation.pipe.ts      // 数据验证管道
+│   └── utils                       // 工具
+│       └── crypto.util.ts          // 加密工具
+├── test
+│   ├── app.e2e-spec.ts
+│   └── jest-e2e.json
+├── tsconfig.build.json
+├── tsconfig.json
+├── tslint.json
+└── yarn.lock
 ```
 
-## Test
+## 自动化脚本
 
-```bash
-# unit tests
-$ npm run test
+| 命令 | 描述信息 |
+|:-----|:---------|
+| npm run changelog | 更新 CHANGELOG 文件 |
+| npm run start | 开发环境启动项目 |
+| npm run start:dev | 开发环境启动项目并开启watch模式 |
+| npm run start:prod | 生成环境启动项目 |
+| npm run lint | eslint 检查 |
+| npm run test | 运行单元测试 |
+| npm run test:e2e | e2e测试  |
+| npm run test:cov | 测试覆盖率 |
 
-# e2e tests
-$ npm run test:e2e
 
-# test coverage
-$ npm run test:cov
+## 代码提交规范
+
+1.  安装 [Commitizen](https://github.com/commitizen/cz-cli) 工具
+
+    ```
+    $ npm install -g commitizen
+    ```
+
+2.  替换 `git commit` 命令
+
+    ```
+    $ git cz
+    ```
+3.  git cz以后会出现选项框用于选择本次提交的内容类型
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-  Nest is [MIT licensed](LICENSE).
+    feat：新功能（feature）
+    fix：修补bug
+    docs：文档（documentation）
+    style： 格式（不影响代码运行的变动）
+    refactor：重构（即不是新增功能，也不是修改bug的代码变动）
+    perf: 提高性能的代码
+    test：增加测试
+    build: 影响构建系统或外部依赖项的更改
+    ci: 修改ci配置文件或者脚本
+    chore：构建过程或辅助工具的变动 
+    revert: 恢复之前的提交
+```
+4.  选择以后会出现Denote the scope of this change ($location, $browser, $compile, etc.) 用于输入本次提交改变的功能范围 
+5.  然后出现Write a short, imperative tense description of the change 用于输入本次提交内容的概要
+6.  Provide a longer description of the change，用于输入本次提交内容的详细    描述
+7.  List any breaking changes，用于输入本次提交的重要变更内容
+8.  List any issues closed by this change 用于输入本次提交解决的问题
